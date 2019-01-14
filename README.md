@@ -1,6 +1,6 @@
 <p align =“center”>：警告：此代码适用于最新版本的ReCaptcha。仅限用于您出于教育目的而控制的网站。 ：警告：</ p>
 
-项目创建于2017年4月，`[WangJianing-Blog](https://www.bytedd.com"王嘉宁的博客")`的准确率达到了85％，击败了Google的ReCaptcha。在这项工作发布后，Google发布了ReCaptcha的更新，其中包含以下主要更改：
+项目创建于2017年4月，[`WangJianing-Blog`](https://www.bytedd.com"王嘉宁的博客")的准确率达到了85％，击败了Google的ReCaptcha。在这项工作发布后，Google发布了ReCaptcha的更新，其中包含以下主要更改：
 *更好的浏览器自动检测
 *口语短语而不是数字
 
@@ -56,4 +56,4 @@ unCaptcha2的方法很简单：
 
 [ReCaptcha开源](https://github.com/WangJianing-BGH/ReCaptcha)
 
-[项目原文clone](https://github.com/ecthros/uncaptcha2.git)
+项目原文clone：（https://github.com/ecthros/uncaptcha2.git）
