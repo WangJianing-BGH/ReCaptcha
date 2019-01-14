@@ -1,60 +1,59 @@
-<p align="center"> :warning: This code works on the most recent version of ReCaptcha. Only use on sites you control for educational purposes. :warning:</p>
+<p align =“center”>：警告：此代码适用于最新版本的ReCaptcha。仅限用于您出于教育目的而控制的网站。 ：警告：</ p>
 
-Created in April 2017, [unCaptcha](https://github.com/ecthros/uncaptcha) achieved 85% accuracy defeating Google's ReCaptcha. After the release of this work, Google released an update to ReCaptcha with the following major changes:
-* Better browser automation detection
-* Spoken phrases rather than digits
+项目创建于2017年4月，`[WangJianing-Blog]`（https://www.bytedd.com"王嘉宁的博客"）的准确率达到了85％，击败了Google的ReCaptcha。在这项工作发布后，Google发布了ReCaptcha的更新，其中包含以下主要更改：
+*更好的浏览器自动检测
+*口语短语而不是数字
 
-These changes were initially successful in protecting against the original unCaptcha attack. However, as of June 2018, these challenges have been solved. We have been in contact with the ReCaptcha team for over six months and they are fully aware of this attack. The team has allowed us to release the code, despite its current success.
+这些变化最初成功地防止了原来的unCaptcha攻击。但是，截至2018年6月，这些挑战已经解决。我们已经与ReCaptcha团队联系了六个多月，他们完全了解这次袭击事件。尽管目前取得了成功，但该团队已允许我们发布代码。
 
-# Introducing unCaptcha2
+＃介绍unCaptcha2
 
-Thanks to the changes to the audio challenge, passing ReCaptcha is easier than ever before. The code now only needs to make a single request to a free, publicly available speech to text API to achieve around *90% accuracy* over all captchas.
+由于音频挑战的变化，通过ReCaptcha比以往更容易。现在，代码只需向一个免费的，公开发布的语音文本API发出单一请求，即可在所有验证码上实现约90％的准确率*。
 
-Since the changes to ReCaptcha prevent Selenium, a browser automation engine, unCaptcha2 uses a screen clicker to move to certain pixels on the screen and move around the page like a human. There is certainly work to be done here - the coordinates need to be updated for each new user and is not the most robust.
+由于对ReCaptcha的更改阻止了浏览器自动化引擎Selenium，因此unCaptcha2使用屏幕点击器移动到屏幕上的某些像素，并像人一样在页面上移动。这里肯定有工作要做 - 需要为每个新用户更新坐标，而且不是最强大的。
 
-# The Approach
+＃ 该方法
 
-unCaptcha2's approach is very simple:
-1. Navigate to Google's ReCaptcha Demo site
-2. Navigate to audio challenge for ReCaptcha
-3. Download audio challenge
-4. Submit audio challenge to Speech To Text
-5. Parse response and type answer
-6. Press submit and check if successful
+unCaptcha2的方法很简单：
+1.导航到Google的ReCaptcha演示网站
+2.导航到ReCaptcha的音频挑战
+3.下载音频挑战
+4.将语音提示提交到语音到文本
+5.解析响应并输入答案
+6.按提交并检查是否成功
 
-# Demo
+#演示
 
-![vid](https://user-images.githubusercontent.com/14065974/45004579-df021180-afbb-11e8-8598-177159ed09b4.gif)
+！[VID]（https://user-images.githubusercontent.com/14065974/45004579-df021180-afbb-11e8-8598-177159ed09b4.gif）
 
-# How To Use
+＃ 如何使用
 
-Since unCaptcha2 has to go to specific coordinates on the screen, you'll need to update the coordinates based on your setup. These coordinates are located at the top of run.py. On Linux, using the command `xdotool getmouselocation --shell` to find the coordinates of your mouse may be helpful.
+由于unCaptcha2必须转到屏幕上的特定坐标，因此您需要根据您的设置更新坐标。这些坐标位于run.py的顶部。在Linux上，使用命令`xdotool getmouselocation --shell`来查找鼠标的坐标可能会有所帮助。
 
-You'll also need to set your credentials for whichever speech-to-text API you choose. Since Google's, Microsoft's, and IBM's speech-to-text systems seem to work the best, those are already included in queryAPI.py. You'll have to set the username and password as required; for Google's API, you'll have to set an environment variable (GOOGLE_APPLICATION_CREDENTIALS) with a file containing your Google application credentials.
+您还需要为您选择的任何语音到文本API设置凭据。由于谷歌，微软和IBM的语音到文本系统看起来效果最好，因此这些系统已包含在queryAPI.py中。您必须根据需要设置用户名和密码;对于Google的API，您必须使用包含Google应用程序凭据的文件设置环境变量（GOOGLE_APPLICATION_CREDENTIALS）。
 
-Finally, install the dependencies, using `pip install -r dependencies.txt`.
+最后，使用`pip install -r dependencies.txt`安装依赖项。
 
-# Responsible Disclosure
+＃负责任的披露
 
-We contacted the Recaptcha team in June 2018 to alert them that the updates to the Recaptcha system made it less secure, and a formal issue was opened on June 27th, 2018. We demonstrated a fully functional version of this attack soon thereafter. We chose to wait 6 months after the initial disclosure to give the Recaptcha team time to address the underlying architectural issues in the Recaptcha system. The Recaptcha team is aware of this attack vector, and have confirmed they are okay with us releasing this code, despite its current success rate.
+本项目破解团队在2018年6月联系了Recaptcha团队，提醒他们Recaptcha系统的更新使其安全性降低，正式问题于2018年6月27日开始。我们很快就展示了这次攻击的全功能版本。他们选择在初次披露后等待6个月，让Recaptcha团队有时间解决Recaptcha系统中的基础架构问题。 Recaptcha团队知道这个攻击媒介，并且已经确认他们对我们发布此代码是好的，尽管它目前的成功率。
 
-This attack vector was deemed out of scope for the bug bounty program.
+这个攻击媒介被认为超出了bug赏金计划的范围。
 
-# Disclaimer
+＃免责声明
 
-unCaptcha2, like the original version, is meant to be a proof of concept. As Google updates its service, this repository will *not* be updated. As a result, it is not expected to work in the future, and is likely to break at any time.
+与原始版本一样，unCaptcha2旨在成为概念证明。当Google更新其服务时，此存储库将不会*更新。因此，预计它不会在未来发挥作用，并且可能随时中断。
 
-Unfortunately, due to Google's work in browser automation detection, this version of unCaptcha does not use Selenium. As a result, the code has to navigate to specific parts of the screen. To see unCaptcha working for yourself, you will need to change the coordinates for your screen resolution.
+不幸的是，由于谷歌在浏览器自动化检测方面的工作，这个版本的unCaptcha不使用Selenium。因此，代码必须导航到屏幕的特定部分。要查看unCaptcha为自己工作，您需要更改屏幕分辨率的坐标。
 
-While unCaptcha2 is tuned for Google's Demo site, it can be changed to work for any such site - the logic for defeating ReCaptcha will be the same.
+虽然unCaptcha2适用于Google的Demo网站，但它可以更改为适用于任何此类网站 - 击败ReCaptcha的逻辑将是相同的。
 
-Additionally, we have removed our API keys from all the necessary queries. If you are looking to recreate some of the work or are doing your own research in this area, you will need to acquire API keys from each of the six services used. These keys are delineated in our files by a long string of the character 'X'. It's worth noting that the only protection against creating multiple API keys is ReCaptcha - therefore, unCaptcha could be made self sufficient by solving captchas to sign up for new API keys.
+此外，我们已从所有必要的查询中删除了我们的API密钥。如果您希望重新创建某些工作或在此区域进行自己的研究，则需要从所使用的六种服务中获取API密钥。这些键在我们的文件中由一长串字符'X'描绘。值得注意的是，防止创建多个API密钥的唯一保护是ReCaptcha  - 因此，通过解析验证码以注册新的API密钥，可以使unCaptcha自给自足。
 
-As always, thanks to everyone who puts up with me, including,
+如有帮助请访问我的网站，接收更过精彩内容！
 
-[Kkevsterrr](https://github.com/Kkevsterrr)
+[WangJianing-Blog]（https://www.bytedd.com"王嘉宁的博客"）
 
-[Dave Levin](https://cs.umd.edu/~dml)
+[ReCaptcha开源](https://github.com/WangJianing-BGH/ReCaptcha)
 
-[dpatel19](https://github.com/dpatel19)
-
+[项目原文](https://github.com/ecthros/uncaptcha2.git)
